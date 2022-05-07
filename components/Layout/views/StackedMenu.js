@@ -43,7 +43,6 @@ export default function StackedMenu({ options }) {
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
             width: "15ch",
-            backgroundImage: "url(" + "/images/SGrid.svg" + ")",
             backgroundColor: "#fbfbff",
           },
         }}

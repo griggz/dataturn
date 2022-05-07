@@ -62,7 +62,10 @@ function AppAppBar() {
                   title: session ? "Logout" : "Login",
                   handleClick: session
                     ? () => signOut()
-                    : () => router.push("/auth/signin/"),
+                    : () =>
+                        router.push("/auth/signin/", undefined, {
+                          shallow: true,
+                        }),
                 },
               ]}
             />
@@ -94,7 +97,10 @@ function AppAppBar() {
             </Button>
             <Button
               onClick={
-                session ? () => signOut() : () => router.push("/auth/signin/")
+                session
+                  ? () => signOut()
+                  : () =>
+                      router.push("/auth/signin/", undefined, { shallow: true })
               }
               variant="text"
               hover={"false"}
