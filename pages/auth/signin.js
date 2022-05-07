@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { required } from "../../components/Form/validations";
 import { Field, Form, FormSpy } from "react-final-form";
 import FormButton from "../../components/Form/FormButton";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import styles from "../../styles/Signin.module.css";
 import Button from "../../components/Elements/Button";
 
-const Signin = ({ csrfToken, providers }) => {
+function Signin({ csrfToken, providers }) {
   const validate = (values) => {
     const errors = required(["email"], values);
 
@@ -108,9 +108,9 @@ const Signin = ({ csrfToken, providers }) => {
       />
     </div>
   );
-};
+}
 
-export default Signin;
+export default memo(Signin);
 
 export async function getServerSideProps(context) {
   const providers = await getProviders();
