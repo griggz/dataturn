@@ -29,7 +29,6 @@ export default function ContactUsForm({ setOpenContactForm }) {
       <Grid container columnSpacing={1}>
         <Grid item xs={12} sm={6}>
           <TextField
-            autoFocus
             margin="dense"
             id="firstName"
             label="First Name"
@@ -42,7 +41,6 @@ export default function ContactUsForm({ setOpenContactForm }) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            autoFocus
             margin="dense"
             id="lastName"
             label="Last Name"
