@@ -1,14 +1,12 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
-import getUserDetails from "../../../apps/auth/utils/getUserDetails";
 // import EmailProvider from "next-auth/providers/email"
 
 let prisma;
 
-if (process.env.NODE_ENV === "live") {
+if (process.env.ENV === "live") {
   prisma = new PrismaClient();
 } else {
   if (!global.prisma) {
@@ -41,8 +39,7 @@ export default NextAuth({
         ? Promise.resolve(locateUrl)
         : Promise.resolve(baseUrl);
     },
-    async jwt({ token, user, ...other }) {
-      console.log(other);
+    async jwt({ token, user }) {
       // Persist the OAuth access_token to the token right after signin
       user && (token.user = user);
       return token;

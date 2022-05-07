@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 let prisma;
 
-if (process.env.NODE_ENV === "live") {
+if (process.env.ENV === "live") {
   prisma = new PrismaClient();
 } else {
   if (!global.prisma) {
