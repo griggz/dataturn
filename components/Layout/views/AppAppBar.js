@@ -14,6 +14,9 @@ function AppAppBar() {
   const [openContactForm, setOpenContactForm] = React.useState(false);
   const { data: session, status } = useSession();
   const router = useRouter();
+  if (status === "unauthenticated") {
+    router.prefetch("/auth/signin/");
+  }
 
   return (
     <Box>

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { required } from "../../components/Form/validations";
 import { Field, Form, FormSpy } from "react-final-form";
 import FormButton from "../../components/Form/FormButton";
@@ -110,7 +110,7 @@ function Signin({ csrfToken, providers }) {
   );
 }
 
-export default memo(Signin);
+export default Signin;
 
 export async function getServerSideProps(context) {
   const providers = await getProviders();
