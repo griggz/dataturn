@@ -43,6 +43,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.23.1",
     "prettier": "^2.5.1",
-    "prisma": "^2.24.1"
+    "prisma": "latest"
   }
 }
