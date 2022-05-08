@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -41,6 +42,7 @@
     "eslint-plugin-next": "^0.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.23.1",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "@prisma/client": "^3.13.0"
   }
 }
