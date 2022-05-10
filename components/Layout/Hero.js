@@ -30,6 +30,7 @@ function Hero() {
             paddingLeft: 2,
             paddingRight: 2,
             opacity: 0.7,
+            color: "primary.dark",
           }}
         >
           Making Data management and analytics accessible
