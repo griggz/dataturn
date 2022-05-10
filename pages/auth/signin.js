@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Signin.module.css";
 import Button from "../../components/Elements/Button";
+import TextField from "../../components/Elements/TextField";
 
 function Signin({ csrfToken, providers }) {
   const validate = (values) => {
@@ -38,58 +39,15 @@ function Signin({ csrfToken, providers }) {
                 <>
                   {provider.id === "email" && (
                     <>
-                      <Form
-                        onSubmit={(values) => {
-                          signIn(provider.id, { email: values.email });
-                        }}
-                        subscription={{ submitting: true, pristine: true }}
-                        validate={validate}
-                      >
-                        {({ handleSubmit, submitting }) => {
-                          return (
-                            <form
-                              onSubmit={async (event) => {
-                                handleSubmit(event);
-                              }}
-                            >
-                              <Field
-                                fullWidth
-                                size="large"
-                                component={RFTextField}
-                                disabled={submitting}
-                                required
-                                placeholder="Email"
-                                name="email"
-                                autoComplete="email"
-                                label={false}
-                                margin="none"
-                              />
-
-                              <FormSpy subscription={{ submitError: true }}>
-                                {({ submitError }) =>
-                                  submitError ? (
-                                    <FormFeedback sx={{ marginTop: 2 }} error>
-                                      {submitError}
-                                    </FormFeedback>
-                                  ) : null
-                                }
-                              </FormSpy>
-                              <FormButton
-                                sx={{
-                                  marginTop: 2,
-                                }}
-                                type="submit"
-                                disabled={submitting}
-                                size="large"
-                                color="primary"
-                                fullWidth
-                              >
-                                {submitting ? "In progress…" : "Submit"}
-                              </FormButton>
-                            </form>
-                          );
-                        }}
-                      </Form>
+                      <TextField
+                        fullWidth
+                        size="large"
+                        placeholder="Email"
+                        name="email"
+                        autoComplete="email"
+                        label={false}
+                        margin="none"
+                      />
                       <hr />
                     </>
                   )}
