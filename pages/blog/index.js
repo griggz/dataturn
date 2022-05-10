@@ -11,6 +11,7 @@ function Blog() {
         sx={{
           flexGrow: 1,
           marginTop: 15,
+          minHeight: "600px",
         }}
       >
         <PostMainList />
