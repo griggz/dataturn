@@ -13,7 +13,7 @@ import { UpperFirstLetter } from "../../../utils/Strings";
 function PostForm({ formInitState }) {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState();
-  const [isDraft, setIsDraft] = useState();
+  const [isDraft, setIsDraft] = useState(false);
   const [publishDate, setPublishDate] = useState(null);
   const [post, setPost] = useState(formInitState);
   const scrollToTop = () => window.scrollTo(0, 0);
@@ -58,7 +58,7 @@ function PostForm({ formInitState }) {
         );
         router.push(`/blog/edit/${res.data.id}`);
       } catch (error) {
-        message = `Something went wrong. ${error.response.data.message}`;
+        message = `Something went wrong => ${error}`;
       }
     }
     setSent(false);
