@@ -10,7 +10,6 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Signin.module.css";
 import Button from "../../components/Elements/Button";
-import TextField from "../../components/Elements/TextField";
 
 function Signin({ csrfToken, providers }) {
   const validate = (values) => {
@@ -34,35 +33,75 @@ function Signin({ csrfToken, providers }) {
           </p>
           <div className={styles.cardContent}>
             <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
             {providers &&
-              Object.values(providers).map((provider) => (
-                <>
-                  {provider.id === "email" && (
-                    <>
-                      <TextField
-                        fullWidth
-                        size="large"
-                        placeholder="Email"
-                        name="email"
-                        autoComplete="email"
-                        label={false}
-                        margin="none"
-                      />
-                      <hr />
-                    </>
-                  )}
-                  {provider.id === "github" && (
-                    <div key={provider.name} style={{ marginBottom: 0 }}>
-                      <Button
-                        color="primary"
-                        onClick={() => signIn(provider.id)}
-                      >
-                        Sign in with {provider.name}
-                      </Button>
-                    </div>
-                  )}
-                </>
-              ))}
+              Object.values(providers).map((provider) =>
+                provider.id === "email" ? (
+                  <div key={provider.id}>
+                    <Form
+                      onSubmit={(values) => {
+                        signIn(provider.id, { email: values.email });
+                      }}
+                      subscription={{ submitting: true, pristine: true }}
+                      validate={validate}
+                    >
+                      {({ handleSubmit, submitting }) => {
+                        return (
+                          <form
+                            onSubmit={async (event) => {
+                              handleSubmit(event);
+                            }}
+                          >
+                            <Field
+                              fullWidth
+                              size="large"
+                              component={RFTextField}
+                              disabled={submitting}
+                              required
+                              placeholder="Email"
+                              name="email"
+                              autoComplete="email"
+                              label={false}
+                              margin="none"
+                            />
+
+                            <FormSpy subscription={{ submitError: true }}>
+                              {({ submitError }) =>
+                                submitError ? (
+                                  <FormFeedback sx={{ marginTop: 2 }} error>
+                                    {submitError}
+                                  </FormFeedback>
+                                ) : null
+                              }
+                            </FormSpy>
+                            <FormButton
+                              sx={{
+                                marginTop: 2,
+                              }}
+                              type="submit"
+                              disabled={submitting}
+                              size="large"
+                              color="primary"
+                              fullWidth
+                            >
+                              {submitting ? "In progress…" : "Submit"}
+                            </FormButton>
+                          </form>
+                        );
+                      }}
+                    </Form>
+                    <hr />
+                  </div>
+                ) : provider.id === "github" ? (
+                  <div key={provider.id} style={{ marginBottom: 0 }}>
+                    <Button color="primary" onClick={() => signIn(provider.id)}>
+                      Sign in with {provider.name}
+                    </Button>
+                  </div>
+                ) : (
+                  ""
+                )
+              )}
           </div>
         </div>
       </div>
