@@ -17,7 +17,7 @@ model Leads {
     lastName  String
     email     String
     comments  String
-    userId    String
+    userId    String?
     User      User?    @relation(fields: [userId], references: [id])
     createdAt DateTime @default(now()) @map(name: "created_at")
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "markdown-to-jsx";
 import Typography from "./Typography";
-import { Link } from "@mui/icons-material";
+import { Link } from "@mui/material";
 import Image from "next/image";
 
 const options = {
@@ -31,7 +31,11 @@ const options = {
     },
     a: {
       component: (props) => (
-        <Link color="secondary" style={{ fontWeight: "bold" }} {...props} />
+        <Link
+          color="secondary"
+          style={{ fontWeight: "bold", textDecoration: "none" }}
+          {...props}
+        />
       ),
     },
     ul: {

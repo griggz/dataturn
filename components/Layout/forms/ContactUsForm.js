@@ -1,17 +1,22 @@
 import React, { useState } from "react";
+import { useRouter, withRouter } from "next/router";
 import Button from "../../Elements/Button";
 import axios from "axios";
 import TextField from "../../Elements/TextField";
 import { Grid } from "@mui/material";
 
-export default function ContactUsForm({ setOpenContactForm }) {
+function ContactUsForm({ setOpenContactForm }) {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [emailData, setEmail] = useState();
   const [commentsData, setComments] = useState();
 
+  const router = useRouter();
+
   const handleSubmit = async () => {
-    setOpenContactForm(false);
+    if (setOpenContactForm) {
+      setOpenContactForm(false);
+    }
     const data = {
       firstName: firstName,
       lastName: lastName,
@@ -22,6 +27,10 @@ export default function ContactUsForm({ setOpenContactForm }) {
     await axios.post("/api/leads/contact_us/", {
       data,
     });
+
+    if (!setOpenContactForm) {
+      router.push("/");
+    }
   };
 
   return (
@@ -94,3 +103,5 @@ export default function ContactUsForm({ setOpenContactForm }) {
     </>
   );
 }
+
+export default withRouter(ContactUsForm);

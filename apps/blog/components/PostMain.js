@@ -66,15 +66,6 @@ function Main() {
 
   return (
     <>
-      {/* <Grid xs={12} md={8} sx={{ margin: 0, padding: 0 }}>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => router.push(`/posts/${post.id}`)}
-        >
-          Edit
-        </Button>
-      </Grid> */}
       <Grid
         item
         xs={12}
